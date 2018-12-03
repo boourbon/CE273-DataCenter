@@ -123,4 +123,4 @@ def pc99(lst):
     return sorted(lst)[ int(0.99 * l) ]
 
 def coeff_variation(lst):
-return stdev(lst) / avg(lst)
+    return stdev(lst) / avg(lst)
