@@ -60,11 +60,11 @@ for qsize in 200; do
     dirf=dctcpgraphs-q$qsize
     rm -rf dctcpbb2-q$qsize
     mkdir dctcpbb2-q$qsize
-    dir1=dctcpbb2-q$qsize
+    dir3=dctcpbb2-q$qsize
     for k in 3 5 9 15 20 30 40 60 80 100; do
         dctcp_red_min=`expr $k \\* $dctcp_red_avpkt`
         dctcp_red_max=`expr $dctcp_red_min + 1`
-        python dctcp.py --delay $delay -b $bwnet -B $bwnet -k $k -d $dir1 --maxq $qsize -t $time \
+        python dctcp.py --delay $delay -b $bwnet -B $bwnet -k $k -d $dir3 --maxq $qsize -t $time \
         --red_limit $dctcp_red_limit \
         --red_min $dctcp_red_min \
         --red_max $dctcp_red_max \
@@ -77,7 +77,7 @@ for qsize in 200; do
     done
 done
 
-python plot_k_sweep.py -f $dir1/k.txt -l Ksweep -o $dirf/k_sweep.png
+python plot_k_sweep.py -f $dir3/k.txt -l Ksweep -o $dirf/k_sweep.png
 #rm -rf $dir1
 
 #33333333333333333333333333333333333333
@@ -97,8 +97,8 @@ iperf=~/iperf-patched/src/iperf
 for qsize in 200; do
     dirf=dctcpgraphs-q$qsize
     for hosts in 3 21; do
-	      dir1=dctcpbb3-h$hosts
-	      python dctcp.py --delay $delay -b $bwnet -B $bwnet -d $dir1 --maxq $qsize -t $time \
+	      dir4=dctcpbb3-h$hosts
+	      python dctcp.py --delay $delay -b $bwnet -B $bwnet -d $dir4 --maxq $qsize -t $time \
 	      --red_limit $dctcp_red_limit \
 	      --red_min $dctcp_red_min \
 	      --red_max $dctcp_red_max \
@@ -108,8 +108,8 @@ for qsize in 200; do
 	      --dctcp 1 \
 	      --red 0 \
 	      --iperf $iperf -k 0 -n $hosts
-	      dir2=tcpbb3-h$hosts
-	      python dctcp.py --delay $delay -b 100 -d $dir2 --maxq $qsize -t $time \
+	      dir5=tcpbb3-h$hosts
+	      python dctcp.py --delay $delay -b 100 -d $dir5 --maxq $qsize -t $time \
 	      --dctcp 0 --red 0 --iperf $iperf -k 0 -n $hosts
     done
     
