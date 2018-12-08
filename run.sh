@@ -23,11 +23,11 @@ for qsize in 200; do
     dir1=dctcpdata1-q$qsize
     
     python dctcp.py --delay $delay \
-    --b $bwnet \
-    --B $bwnet \
-    --d $dir1 \
+    -b $bwnet \
+    -B $bwnet \
+    -d $dir1 \
     --maxq $qsize \
-    --t $time \
+    -t $time \
     --red_limit $dctcp_red_limit \
     --red_min $dctcp_red_min \
     --red_max $dctcp_red_max \
@@ -41,15 +41,15 @@ for qsize in 200; do
     dir2=tcpdata1-q$qsize
     
     python dctcp.py --delay $delay \
-    --b 100 \
-    --d $dir2 \
+    -b 100 \
+    -d $dir2 \
     --maxq $qsize \
-    --t $time \
+    -t $time \
     --dctcp 0 \
     --red 0 \
     --iperf $iperf \
-    --k 0 \
-    --n 3
+    -k 0 \
+    -n 3
     
 done
 
@@ -74,12 +74,12 @@ for qsize in 200; do
         dctcp_red_max=`expr $dctcp_red_min + 1`
 	
         python dctcp.py --delay $delay \
-	--b $bwnet \
-	--B $bwnet \
-	--k $k \
-	--d $dir3 \
+	-b $bwnet \
+	-B $bwnet \
+	-k $k \
+	-d $dir3 \
 	--maxq $qsize \
-	--t $time \
+	-t $time \
         --red_limit $dctcp_red_limit \
         --red_min $dctcp_red_min \
         --red_max $dctcp_red_max \
@@ -114,11 +114,11 @@ for qsize in 200; do
 	      dir4=dctcpdata3-h$hosts
 	      
 	      python dctcp.py --delay $delay \
-	      --b $bwnet \ 
-	      --B $bwnet \
-	      --d $dir4 \
+	      -b $bwnet \ 
+	      -B $bwnet \
+	      -d $dir4 \
 	      --maxq $qsize \
-	      --t $time \
+	      -t $time \
 	      --red_limit $dctcp_red_limit \
 	      --red_min $dctcp_red_min \
 	      --red_max $dctcp_red_max \
@@ -132,15 +132,15 @@ for qsize in 200; do
 	      dir5=tcpdata3-h$hosts
 	      
 	      python dctcp.py --delay $delay \
-	      --b 100 \
-	      --d $dir5 \
+	      -b 100 \
+	      -d $dir5 \
 	      --maxq $qsize \
-	      --t $time \
+	      -t $time \
 	      --dctcp 0 \
 	      --red 0 \
 	      --iperf $iperf \
-	      --k 0 \
-	      --n $hosts
+	      -k 0 \
+	      -n $hosts
 	      
     done
 done
