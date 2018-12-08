@@ -14,7 +14,6 @@ from subprocess import Popen, PIPE
 from time import sleep, time
 from multiprocessing import Process
 from argparse import ArgumentParser
-from monitor import monitor_qlen
 from time import sleep, time
 from subprocess import *
 
