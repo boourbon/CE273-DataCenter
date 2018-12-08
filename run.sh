@@ -17,12 +17,9 @@ iperf_port=5001
 iperf=~/iperf-patched/src/iperf
 
 for qsize in 200; do
-    rm -rf dctcpgraphs-q$qsize
-    mkdir dctcpgraphs-q$qsize
-    rm -rf dctcpbb1-q$qsize
-    rm -rf tcpbb1-q$qsize
-    dirf=dctcpgraphs-q$qsize
-    dir1=dctcpbb1-q$qsize
+    rm -rf dctcpdata1-q$qsize
+    rm -rf tcpdata1-q$qsize
+    dir1=dctcpdata1-q$qsize
     
     python dctcp.py --delay $delay \
     --b $bwnet \
@@ -40,7 +37,7 @@ for qsize in 200; do
     --red 0 \
     --iperf $iperf -k 0 -n 3
     
-    dir2=tcpbb1-q$qsize
+    dir2=tcpdata1-q$qsize
     
     python dctcp.py --delay $delay \
     --b 100 \
@@ -52,10 +49,9 @@ for qsize in 200; do
     --iperf $iperf \
     --k 0 \
     --n 3
-
-    python plot_queue.py -f $dir1/q.txt $dir2/q.txt --legend dctcp tcp -o \
-    $dirf/dctcp_tcp_queue.png
+    
 done
+
 
 # Figure 2 **************************************************
 time=30
@@ -69,10 +65,9 @@ iperf_port=5001
 iperf=~/iperf-patched/src/iperf
 
 for qsize in 200; do
-    dirf=dctcpgraphs-q$qsize
-    rm -rf dctcpbb2-q$qsize
-    mkdir dctcpbb2-q$qsize
-    dir3=dctcpbb2-q$qsize
+    rm -rf dctcpdata2-q$qsize
+    mkdir dctcpdata2-q$qsize
+    dir3=dctcpdata2-q$qsize
     for k in 3 5 9 15 20 30 40 60 80 100; do
         dctcp_red_min=`expr $k \\* $dctcp_red_avpkt`
         dctcp_red_max=`expr $dctcp_red_min + 1`
@@ -97,7 +92,6 @@ for qsize in 200; do
     done
 done
 
-python plot_k_sweep.py -f $dir3/k.txt -l Ksweep -o $dirf/k_sweep.png
 
 # Figure 3 **************************************************
 time=80
@@ -112,9 +106,11 @@ dctcp_red_prob=1
 iperf_port=5001
 iperf=~/iperf-patched/src/iperf
 for qsize in 200; do
-    dirf=dctcpgraphs-q$qsize
     for hosts in 3 21; do
-	      dir4=dctcpbb3-h$hosts
+              rm -rf dctcpdata3-h$hosts
+	      rm -rf tcpdata3-h$hosts
+	      
+	      dir4=dctcpdata3-h$hosts
 	      
 	      python dctcp.py --delay $delay \
 	      --b $bwnet \ 
@@ -132,7 +128,7 @@ for qsize in 200; do
 	      --red 0 \
 	      --iperf $iperf -k 0 -n $hosts
 	      
-	      dir5=tcpbb3-h$hosts
+	      dir5=tcpdata3-h$hosts
 	      
 	      python dctcp.py --delay $delay \
 	      --b 100 \
@@ -146,6 +142,4 @@ for qsize in 200; do
 	      --n $hosts
 	      
     done
-    python plot_cdf.py -f dctcpbb3-h3/q.txt dctcpbb3-h21/q.txt tcpbb3-h3/q.txt \
-    tcpbb3-h21/q.txt -l dctcp2flows dctcp20flows tcp2flows tcp20flows -o $dirf/cdf_flows.png
 done
