@@ -144,3 +144,5 @@ for qsize in 200; do
 	      
     done
 done
+
+python plot_all.py
