@@ -41,7 +41,7 @@ class StarTopo(Topo):
     def create_topology(self):
         hconfig = {'cpu': self.cpu}
         if self.enable_dctcp: 
-        print("Enabling ECN for senders/receiver")
+            print("Enabling ECN for senders/receiver")
         lconfig_sender = {'bw': self.bw_host, 'delay': self.delay, 'max_queue_size': self.maxq, 
                 'show_commands': self.show_mininet_commands}
         lconfig_receiver = {'bw': self.bw_net, 'delay': 0, 'max_queue_size': self.maxq, 
