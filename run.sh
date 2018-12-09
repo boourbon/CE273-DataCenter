@@ -36,7 +36,9 @@ for qsize in 200; do
     --red_prob $dctcp_red_prob \
     --dctcp 1 \
     --red 0 \
-    --iperf $iperf -k 0 -n 3
+    --iperf $iperf 
+    -k 0 \
+    -n 3
     
     dir2=tcpdata1-q$qsize
     
@@ -71,24 +73,24 @@ for qsize in 200; do
     
     for k in 3 5 9 15 20 30 40 60 80 100; do
         dctcp_red_min=`expr $k \\* $dctcp_red_avpkt`
-        dctcp_red_max=`expr $dctcp_red_min + 1`
+	dctcp_red_max=`expr $dctcp_red_min + 1`
 	
-        python dctcp.py --delay $delay \
+	python dctcp.py --delay $delay \
 	-b $bwnet \
 	-B $bwnet \
 	-k $k \
 	-d $dir3 \
 	--maxq $qsize \
 	-t $time \
-        --red_limit $dctcp_red_limit \
-        --red_min $dctcp_red_min \
-        --red_max $dctcp_red_max \
-        --red_avpkt $dctcp_red_avpkt \
-        --red_burst $dctcp_red_burst \
-        --red_prob $dctcp_red_prob \
-        --dctcp 1 \
+	--red_limit $dctcp_red_limit \
+	--red_min $dctcp_red_min \
+	--red_max $dctcp_red_max \
+	--red_avpkt $dctcp_red_avpkt \
+	--red_burst $dctcp_red_burst \
+	--red_prob $dctcp_red_prob \
+	--dctcp 1 \
 	--red 0\
-        --iperf $iperf \
+	--iperf $iperf \
 	-n 3
 	
     done
@@ -112,38 +114,38 @@ for qsize in 200; do
         rm -rf dctcpdata3-h$hosts
         rm -rf tcpdata3-h$hosts
 	
-	 dir4=dctcpdata3-h$hosts
+	dir4=dctcpdata3-h$hosts
 	
-	 python dctcp.py --delay $delay \
-	 -b $bwnet \
-	 -B $bwnet \
-	 -d $dir4 \
-	 --maxq $qsize \
-	 -t $time \
-	 --red_limit $dctcp_red_limit \
-	 --red_min $dctcp_red_min \
-	 --red_max $dctcp_red_max \
-	 --red_avpkt $dctcp_red_avpkt \
-	 --red_burst $dctcp_red_burst \
-	 --red_prob $dctcp_red_prob \
-	 --dctcp 1 \
-	 --red 0 \
-	 --iperf $iperf \
-	 -k 0 \
-	 -n $hosts
-	      
-	 dir5=tcpdata3-h$hosts
-	      
-	 python dctcp.py --delay $delay \
-	 -b 100 \
-	 -d $dir5 \
-	 --maxq $qsize \
-	 -t $time \
-	 --dctcp 0 \
-	 --red 0 \
-	 --iperf $iperf \
-	 -k 0 \
-	 -n $hosts
+	python dctcp.py --delay $delay \
+	-b $bwnet \
+	-B $bwnet \
+	-d $dir4 \
+	--maxq $qsize \
+	-t $time \
+	--red_limit $dctcp_red_limit \
+	--red_min $dctcp_red_min \
+	--red_max $dctcp_red_max \
+	--red_avpkt $dctcp_red_avpkt \
+	--red_burst $dctcp_red_burst \
+	--red_prob $dctcp_red_prob \
+	--dctcp 1 \
+	--red 0 \
+	--iperf $iperf \
+	-k 0 \
+	-n $hosts
+	
+	dir5=tcpdata3-h$hosts
+	
+	python dctcp.py --delay $delay \
+	-b 100 \
+	-d $dir5 \
+	--maxq $qsize \
+	-t $time \
+	--dctcp 0 \
+	--red 0 \
+	--iperf $iperf \
+	-k 0 \
+	-n $hosts
 	      
     done
 done
