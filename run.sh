@@ -110,9 +110,9 @@ dctcp_red_prob=1
 iperf_port=5001
 iperf=~/iperf-patched/src/iperf
 for qsize in 200; do
-    for hosts in 3 21; do
+    for hosts in 3 21; do 
         rm -rf dctcpdata3-h$hosts
-        rm -rf tcpdata3-h$hosts
+	rm -rf tcpdata3-h$hosts
 	
 	dir4=dctcpdata3-h$hosts
 	
