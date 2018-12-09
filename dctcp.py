@@ -228,7 +228,7 @@ def start_receiver(net):
 def start_senders(net):
     h0 = net.getNodeByName('h0')
     for i in range(args.hosts-1):
-    print "Starting iperf client..."
+        print "Starting iperf client..."
     hn = net.getNodeByName('h%d' %(i+1))
     client = hn.popen("%s -c " % CUSTOM_IPERF_PATH + h0.IP() + " -t 1000")
     
