@@ -149,4 +149,6 @@ for qsize in 200; do
 done
 
 mkdir graphs
+sudo apt-get install python-matplotlib
+sudo apt-get install python-pandas 
 python plot_all.py
