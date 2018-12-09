@@ -41,28 +41,28 @@ class StarTopo(Topo):
     def create_topology(self):
         hconfig = {'cpu': self.cpu}
         if self.enable_dctcp: 
-	    print("Enabling ECN for senders/receiver")
+        print("Enabling ECN for senders/receiver")
         lconfig_sender = {'bw': self.bw_host, 'delay': self.delay, 'max_queue_size': self.maxq, 
-			  'show_commands': self.show_mininet_commands}
+                'show_commands': self.show_mininet_commands}
         lconfig_receiver = {'bw': self.bw_net, 'delay': 0, 'max_queue_size': self.maxq, 
-			    'show_commands': self.show_mininet_commands}                            
+                'show_commands': self.show_mininet_commands}                            
         lconfig_switch = {'bw': self.bw_net, 'delay': 0, 'max_queue_size': self.maxq,
-                            'enable_ecn': 1 if self.enable_dctcp else 0,
-                            'enable_red': 1 if self.enable_red else 0,
-                            'red_params': self.red_params if ((self.enable_red or self.enable_dctcp) 
-			        and (self.red_params != None)) else None,
-                            'show_commands': self.show_mininet_commands} 
+                'enable_ecn': 1 if self.enable_dctcp else 0,
+                'enable_red': 1 if self.enable_red else 0,
+                'red_params': self.red_params if ((self.enable_red or self.enable_dctcp) 
+                        and (self.red_params != None)) else None,
+                'show_commands': self.show_mininet_commands}
         n = self.n
         receiver = self.addHost('h0')
         switch = self.addSwitch('s0')
         hosts = []
         for i in range(n-1):
             hosts.append(self.addHost('h%d' % (i+1), **hconfig))
-	self.addLink(receiver, switch, cls=Link,
-                      cls1=TCIntf, cls2=TCIntf,
-                      params1=lconfig_receiver, params2=lconfig_switch)
+        self.addLink(receiver, switch, cls=Link,
+                    cls1=TCIntf, cls2=TCIntf,
+                    params1=lconfig_receiver, params2=lconfig_switch)
         for i in range(n-1):
-	    self.addLink(hosts[i], switch, **lconfig_sender)
+            self.addLink(hosts[i], switch, **lconfig_sender)
 
 
 CALIBRATION_SKIP = 20
@@ -145,43 +145,43 @@ parser.add_argument('--maxq',
 
 # RED Parameters 
 parser.add_argument('--mark_threshold', '-k',
-		    help="Marking threshold",
-		    type=int,
-		    default="20")
+            help="Marking threshold",
+            type=int,
+            default="20")
 
 parser.add_argument('--red_limit',
-		    help="RED limit",
-		    default="1000000")
+            help="RED limit",
+            default="1000000")
 
 parser.add_argument('--red_min',
-		    help="RED min marking threshold",
-		    default="20000")
+            help="RED min marking threshold",
+            default="20000")
 
 parser.add_argument('--red_max',
-		    help="RED max marking threshold",
-		    default="25000")
+            help="RED max marking threshold",
+            default="25000")
 
 parser.add_argument('--red_avpkt',
-		    help="RED average packet size",
-		    default="1000")
+            help="RED average packet size",
+            default="1000")
 
 parser.add_argument('--red_burst',
-		    help="RED burst size",
-		    default="20") 
+            help="RED burst size",
+            default="20") 
 
 parser.add_argument('--red_prob',
-		    help="RED marking probability",
-		    default="1")
+            help="RED marking probability",
+            default="1")
 
 parser.add_argument('--dctcp',
-		    help="Enable DCTCP",
-		    type=int,
-		    default="0")
+            help="Enable DCTCP",
+            type=int,
+            default="0")
 
 parser.add_argument('--red',
-		    help="Enable RED",
-		    type=int,
-		    default="0")
+            help="Enable RED",
+            type=int,
+            default="0")
 
 parser.add_argument('--iperf',
                     dest="iperf",
@@ -204,7 +204,7 @@ def start_tcpprobe(outfile="cwnd.txt"):
     Popen("cat /proc/net/tcpprobe > %s/%s" % (args.dir, outfile),
           shell=True)
 
-	
+
 def stop_tcpprobe():
     Popen("killall -9 cat", shell=True).wait()
 
@@ -228,10 +228,10 @@ def start_receiver(net):
 def start_senders(net):
     h0 = net.getNodeByName('h0')
     for i in range(args.hosts-1):
-	print "Starting iperf client..."
-	hn = net.getNodeByName('h%d' %(i+1))
-	client = hn.popen("%s -c " % CUSTOM_IPERF_PATH + h0.IP() + " -t 1000")
-	
+    print "Starting iperf client..."
+    hn = net.getNodeByName('h%d' %(i+1))
+    client = hn.popen("%s -c " % CUSTOM_IPERF_PATH + h0.IP() + " -t 1000")
+    
 def monitor_qlen(iface, interval_sec = 0.01, fname='%s/qlen.txt' % '.'):
     pat_queued = re.compile(r'backlog\s[^\s]+\s([\d]+)p')
     cmd = "tc -s qdisc show dev %s" % (iface)
@@ -252,12 +252,11 @@ def monitor_qlen(iface, interval_sec = 0.01, fname='%s/qlen.txt' % '.'):
 
 # Queue occupancy 
 def start_qmon(iface, interval_sec=0.5, outfile="q.txt"):
-    monitor = Process(target=monitor_qlen,
-                      args=(iface, interval_sec, outfile))
+    monitor = Process(target=monitor_qlen, args=(iface, interval_sec, outfile))
     monitor.start()
     return monitor
 
-	
+
 # Compute the median
 def median(l):
     s = sorted(l)
@@ -283,10 +282,10 @@ def dctcp():
     os.system("sudo sysctl -w net.ipv4.tcp_congestion_control=%s" % args.cong)
     if (args.dctcp):
         SetDCTCPState()
-	edctcp=1
+        edctcp=1
     else:
         ResetDCTCPState()
-	edctcp=0
+        edctcp=0
 
     red_settings = {}
     red_settings['limit'] = args.red_limit
@@ -297,16 +296,15 @@ def dctcp():
     red_settings['prob'] = args.red_prob
 
     topo = StarTopo(n=args.hosts, 
-		    bw_host=args.bw_host, 
-	            delay='%sms' % args.delay,
-		    bw_net=args.bw_net,
-		    maxq=args.maxq,
-		    enable_dctcp=edctcp,
-		    enable_red=args.red,
-		    red_params=red_settings,
-		    show_mininet_commands=0)
-    net = Mininet(topo=topo, host=CPULimitedHost, link=TCLink,
- 		 autoPinCpus=True)
+        bw_host=args.bw_host, 
+        delay='%sms' % args.delay,
+        bw_net=args.bw_net,
+        maxq=args.maxq,
+        enable_dctcp=edctcp,
+        enable_red=args.red,
+        red_params=red_settings,
+        show_mininet_commands=0)
+    net = Mininet(topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
     net.start()
     dumpNodeConnections(net.hosts)
     net.pingAll()
@@ -331,15 +329,15 @@ def dctcp():
 
     # Get the rate of the bottlenect link if the experiment involves marking bandwidth for different threshold
     if(args.mark_threshold):
-	rates = get_rates(iface='s0-eth1', nsamples=CALIBRATION_SAMPLES+CALIBRATION_SKIP)
-	rates = rates[CALIBRATION_SKIP:]
-	reference_rate = median(rates)
-	if (reference_rate > 20):
-	    with open(args.dir+"/k.txt", "a") as myfile:
-		myfile.write(str(args.mark_threshold)+",")
-		myfile.write(str(reference_rate))
-		myfile.write("\n")
-		myfile.close()
+    rates = get_rates(iface='s0-eth1', nsamples=CALIBRATION_SAMPLES+CALIBRATION_SKIP)
+    rates = rates[CALIBRATION_SKIP:]
+    reference_rate = median(rates)
+    if (reference_rate > 20):
+        with open(args.dir+"/k.txt", "a") as myfile:
+        myfile.write(str(args.mark_threshold)+",")
+        myfile.write(str(reference_rate))
+        myfile.write("\n")
+        myfile.close()
 
     stop_tcpprobe()
     qmon.terminate()
