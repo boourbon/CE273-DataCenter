@@ -4,8 +4,6 @@ import numpy as np
 
 if __name__ == "__main__":
 
-    plt.figure()
-
     data1 = pd.read_csv('tcpdata1-q200/q.txt', sep=',', header=None)
     data2 = pd.read_csv('dctcpdata1-q200/q.txt', sep=',', header=None)
     
@@ -22,10 +20,8 @@ if __name__ == "__main__":
 
     plt.legend()
     plt.savefig('graphs/qsize.png')
-    plt.show()
+    #plt.show()
 
-
-    plt.figure()
 
     data3 = pd.read_csv('dctcpdata2-q200/k.txt',sep = ',', header = None)
     data3 = np.array(data3)
@@ -39,10 +35,8 @@ if __name__ == "__main__":
     plt.axis([0,100,0,100])
 
     plt.savefig('graphs/throughput.png')
-    plt.show()
+    #plt.show()
 
-
-    plt.figure()
 
     data4 = pd.read_csv('dctcpdata3-h3/q.txt', sep=',', header=None)
     data4 = np.array(data4)
@@ -125,4 +119,4 @@ if __name__ == "__main__":
 
     plt.legend()
     plt.savefig('graphs/cdf.png')
-    plt.show()
+    #plt.show()
