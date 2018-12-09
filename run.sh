@@ -36,7 +36,7 @@ for qsize in 200; do
     --red_prob $dctcp_red_prob \
     --dctcp 1 \
     --red 0 \
-    --iperf $iperf 
+    --iperf $iperf \
     -k 0 \
     -n 3
     
