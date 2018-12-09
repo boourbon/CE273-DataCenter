@@ -332,12 +332,12 @@ def dctcp():
         rates = get_rates(iface='s0-eth1', nsamples=CALIBRATION_SAMPLES+CALIBRATION_SKIP)
         rates = rates[CALIBRATION_SKIP:]
         reference_rate = median(rates)
-    if (reference_rate > 20):
-        with open(args.dir+"/k.txt", "a") as myfile:
-            myfile.write(str(args.mark_threshold)+",")
-            myfile.write(str(reference_rate))
-            myfile.write("\n")
-            myfile.close()
+        if (reference_rate > 20):
+            with open(args.dir+"/k.txt", "a") as myfile:
+                myfile.write(str(args.mark_threshold)+",")
+                myfile.write(str(reference_rate))
+                myfile.write("\n")
+                myfile.close()
 
     stop_tcpprobe()
     qmon.terminate()
