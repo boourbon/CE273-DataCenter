@@ -88,7 +88,8 @@ for qsize in 200; do
         --red_prob $dctcp_red_prob \
         --dctcp 1 \
 	--red 0\
-        --iperf $iperf -n 3
+        --iperf $iperf \
+	-n 3
 	
     done
 done
@@ -114,7 +115,7 @@ for qsize in 200; do
 	      dir4=dctcpdata3-h$hosts
 	      
 	      python dctcp.py --delay $delay \
-	      -b $bwnet \ 
+	      -b $bwnet \
 	      -B $bwnet \
 	      -d $dir4 \
 	      --maxq $qsize \
@@ -127,7 +128,9 @@ for qsize in 200; do
 	      --red_prob $dctcp_red_prob \
 	      --dctcp 1 \
 	      --red 0 \
-	      --iperf $iperf -k 0 -n $hosts
+	      --iperf $iperf \
+	      -k 0 \
+	      -n $hosts
 	      
 	      dir5=tcpdata3-h$hosts
 	      
@@ -145,4 +148,5 @@ for qsize in 200; do
     done
 done
 
+mkdir graphs
 python plot_all.py
