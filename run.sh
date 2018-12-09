@@ -69,6 +69,7 @@ iperf=~/iperf-patched/src/iperf
 
 for qsize in 200; do
     rm -rf dctcpdata2-q$qsize
+    mkdir dctcpdata2-q$qsize
     dir3=dctcpdata2-q$qsize
     
     for k in 3 5 9 15 20 30 40 60 80 100; do
