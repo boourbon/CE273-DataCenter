@@ -5,6 +5,7 @@ import numpy as np
 if __name__ == "__main__":
     
     plt.figure()
+    print("Plotting Figure1 -- Queue Size")
 
     data1 = pd.read_csv('tcpdata1-q200/q.txt', sep=',', header=None)
     data2 = pd.read_csv('dctcpdata1-q200/q.txt', sep=',', header=None)
@@ -25,6 +26,7 @@ if __name__ == "__main__":
     plt.show()
 
     plt.figure()
+    print("Plotting Figure14 -- Throughput")
     
     data3 = pd.read_csv('dctcpdata2-q200/k.txt',sep = ',', header = None)
     data3 = np.array(data3)
@@ -41,6 +43,7 @@ if __name__ == "__main__":
     plt.show()
 
     plt.figure()
+    print("Plotting Figure13 -- CDF")
     
     data4 = pd.read_csv('dctcpdata3-h3/q.txt', sep=',', header=None)
     data4 = np.array(data4)
