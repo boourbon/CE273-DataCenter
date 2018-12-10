@@ -22,6 +22,7 @@ Do step A <strong>or</strong> step B, and then do step C. <br>
   verify /boot/grub/grub.cfg <br>
   sudo reboot <br>
 </dir>
+<br>
 <dir>
    <strong>Step B</strong> <br>
    1)	Login to AWS. In “Services”, choose “EC2” and select the region “US West (Oregon)”. Then click “Launch Instance”. <br>
@@ -30,6 +31,7 @@ Do step A <strong>or</strong> step B, and then do step C. <br>
    4)	In “Configure Instance” -> “Tenancy”, select “Detected”. Then in “Configure Security Group”, set your security group. Then    click “Review and Launch” -> “Launch”. Before successfully launching, you need to create a key pair, which is a .pem file. Then    your kernel will be launched and ready for use. <br>
    5)	Connect your instance with an SSH client using the IPv4 Public IP or Public DNS of the instance and the created key. The    default username is “Ubuntu”. <br>
 </dir>
+<br>
 <dir>
     <strong>Step C</strong> <br>
     1)	Pull the code from our repository using the command below: <br>
