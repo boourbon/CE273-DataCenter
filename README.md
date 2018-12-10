@@ -27,7 +27,7 @@ Do step A <strong>or</strong> step B, and then do step C. <br>
    <strong>Step B</strong> <br>
    1)	Login to AWS. In “Services”, choose “EC2” and select the region “US West (Oregon)”. Then click “Launch Instance”. <br>
    2)	In “Choose AMI”, type “DCTCP” into the search window and you will get some search results in Community AMIs, which are free    to use DCTCP enabled Linux kernels. Select one and get into the next step. <br>
-   3)	In “Choose Instance Type”, select a medium or larger instance. The free tier eligible micro instance is not good for this    experiment because it’s a shared tenancy, and the experimental data can be very unstable. However, you can try your setup and    verify the correctness of your code using the micro one.  <br>
+   3)	In “Choose Instance Type”, select a medium or larger instance. The free tier eligible micro instance is not good for this    experiment because it’s a shared tenancy, and the experimental data will become very unstable. However, you can try your setup and verify the correctness of your code using the micro one.  <br>
    4)	In “Configure Instance” -> “Tenancy”, select “Detected”. Then in “Configure Security Group”, set your security group. Then    click “Review and Launch” -> “Launch”. Before successfully launching, you need to create a key pair, which is a .pem file. Then    your kernel will be launched and ready for use. <br>
    5)	Connect your instance with an SSH client using the IPv4 Public IP or Public DNS of the instance and the created key. The    default username is “Ubuntu”. <br>
 </dir>
