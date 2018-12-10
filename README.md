@@ -31,10 +31,10 @@ Do step A <strong>or</strong> step B, and then do step C. <br>
    5)	Connect your instance with an SSH client using the IPv4 Public IP or Public DNS of the instance and the created key. The    default username is “Ubuntu”. <br>
 </dir>
 <dir>
-    <strong>Step C</strong>
+    <strong>Step C</strong> <br>
     1)	Pull the code from our repository using the command below: <br>
     git clone https://github.com/boourbon/eec273dctcp.git <br>
-    2)	Run the experiment using the command below: <br>
+    2)	Run the experiment using the command lines below: <br>
         sudo chmod -R 777 eec273dctcp  # Expand permissions <br>
         cd eec273dctcp <br>
         sudo ./run.sh  #Run the experiment <br>
