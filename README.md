@@ -3,14 +3,14 @@
 Do step A <strong>or</strong> step B, and then do step C. <br>
 <dir>
   <strong>Step A</strong> <br>
-  1)	Run the command lines below: <br>
+  1)	Run the commands below: <br>
   wget http://www.kernel.org/pub/linux/kernel/v3.0/linux-3.2.18.tar.bz2 <br>
   tar -xjf linux-3.2.18.tar.bz2 <br>
   cd linux-3.2.18 <br>
   patch -p1 </**your path to**/mininet_tests/dctcp/0001-Updated-DCTCP-patch-for-3.2-kernels.patch <br>
   make menuconfig <br>
   2)	In menuconfig, go to "Networking support", and then go to "Networking options". Enable "DCTCP: Data Center TCP". <br>
-  3)	Run the command lines below:<br>
+  3)	Run the commands below:<br>
   processors=1 <br>
   export CONCURRENCY_LEVEL=$processors <br>
   make-kpkg clean <br>
@@ -34,7 +34,7 @@ Do step A <strong>or</strong> step B, and then do step C. <br>
     <strong>Step C</strong> <br>
     1)	Pull the code from our repository using the command below: <br>
     git clone https://github.com/boourbon/eec273dctcp.git <br>
-    2)	Run the experiment using the command lines below: <br>
+    2)	Run the experiment using the commands below: <br>
         sudo chmod -R 777 eec273dctcp  # Expand permissions <br>
         cd eec273dctcp <br>
         sudo ./run.sh  #Run the experiment <br>
