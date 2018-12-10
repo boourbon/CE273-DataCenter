@@ -1,7 +1,7 @@
 # eec273dctcp
 ## Reproducing Instructions
 Do step A <strong>or</strong> step B, and then do step C. <br>
-<strong> Step A </strong> <br>
+<strong>   Step A </strong> <br>
 1)	Run the command below: <br>
 wget http://www.kernel.org/pub/linux/kernel/v3.0/linux-3.2.18.tar.bz2 <br>
 tar -xjf linux-3.2.18.tar.bz2 <br>
